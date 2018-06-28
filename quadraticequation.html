@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html >
+
+  <head>
+
+    <title>Quadratic Equation</title>
+
+    <!--bootstrap css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- style -->
+    <style>
+      body {
+        padding-top: 54px;
+      }
+      @media (min-width: 992px) {
+        body {
+          padding-top: 56px;
+        }
+      }
+
+    </style>
+    <script>
+        var coefA, coefB, coefC, result;
+
+        function init(){
+           coefA = document.querySelector("#valueA");
+           coefB = document.querySelector("#valueB");
+           coefC = document.querySelector("#valueC");
+           result = document.querySelector("#result");
+            }
+
+       function updateEquation(){
+             document.getElementById("a").innerHTML = coefA.value==1?"":coefA.value;
+             document.getElementById("b").innerHTML = coefB.value==1?"":coefB.value;
+             document.getElementById("c").innerHTML = coefC.value;
+           }
+       function getDiscriminant(a, b, c){
+              return Math.pow(b, 2)-4*a*c;
+       }
+
+      function solve(){
+           if(eval(coefA.value) !== undefined && eval(coefB.value) !== undefined && eval(coefC.value) !== undefined){
+             var a = coefA.value;
+             var b = coefB.value;
+             var c = coefC.value;
+             var discriminant = getDiscriminant(a, b, c);
+           if (discriminant<0){
+            result.innerHTML = "There is no real root of the equation.";
+            }
+             else if (discriminant===0){
+                var root1 = (-b+Math.sqrt(discriminant))/(2*a);
+                var root2 = (-b-Math.sqrt(discriminant))/(2*a);
+                result.innerHTML = "The roots are real and equal.<br>";
+                result.innerHTML += "x<sub>1</sub>: " + root1 + "<br>";
+                result.innerHTML += "x<sub>2</sub>: " + root2 + "<br>";
+        }
+        else{
+            var root1 = (-b+Math.sqrt(discriminant))/(2*a);
+            var root2 = (-b-Math.sqrt(discriminant))/(2*a);
+            result.innerHTML = "The roots are real and distinct .<br>";
+            result.innerHTML += "x<sub>1</sub>: " + root1 + "<br>";
+            result.innerHTML += "x<sub>2</sub>: " + root2 + "<br>";
+        }
+    }
+    else{
+        result.innerHTML = "Please fill in all 3 coefficient";
+    }
+ }
+
+
+      </script>  
+
+  </head>
+
+  <body onload="init();">
+
+    <div class="container">
+      <h2>Second Degree Equations</h2>
+
+      <div class="well">
+          <h3>Quadratic Equation:
+              <span id="a">a</span>x
+              <sup>2</sup> +
+              <span id="b">b</span>x +
+              <span id="c">c</span>
+          </h3>
+          <h4>Enter the coefficients of a, b and c in the field below.</h4>
+
+          <div class="form-group">
+              <label for="valueA">Value of a: </label>
+              <input type="number" min="0" placeholder="1" class="form-control" id="valueA" onchange="updateEquation()" required/>
+          </div>
+          <div class="form-group">
+              <label for="valueB">Value of b: </label>
+              <input type="number" min="0" placeholder="1" class="form-control" id="valueB" onchange="updateEquation()" required/>
+          </div>
+          <div class="form-group">
+              <label for="valueC">Value of c: </label>
+              <input type="number" min="0" placeholder="1" class="form-control" id="valueC" onchange="updateEquation()" required/>
+          </div>
+          <button class="btn btn-primary" onclick="solve()">Solve Equation</button>
+      </div>
+
+      <div class="well">
+          Result:
+          <span id="result"></span>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+
+  </body>
+
+</html>
